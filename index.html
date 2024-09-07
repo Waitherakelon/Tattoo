@@ -30,25 +30,26 @@
             margin: 0 auto;
             padding: 20px;
         }
+        /* Combined the title and description into one rectangle */
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #1f1f1f;
+            margin-bottom: 40px;
+            border-radius: 10px; /* Added round corners */
+        }
         h1 {
-            font-size: 4.5em;
+            font-size: 3em; /* Reduced the size */
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             font-weight: 700;
-            text-transform: uppercase;
         }
         p {
-            font-size: 1.1em;
+            font-size: 1.2em;
             line-height: 1.6;
         }
-        .hero {
-            text-align: center;
-            padding: 100px 0;
-            background-color: #1f1f1f;
-            margin-bottom: 40px;
-        }
         .btn {
-            padding: 15px 30px;
+            padding: 10px 20px;
             background-color: #ff4081;
             color: white;
             border-radius: 5px;
@@ -71,7 +72,7 @@
         }
         .input-box {
             width: 100%;
-            padding: 15px;
+            padding: 10px; /* Reduced padding */
             border: none;
             border-radius: 5px;
             background-color: #2a2a2a;
@@ -79,29 +80,28 @@
             font-size: 1em;
             margin-bottom: 20px;
         }
-.generate-images-btn {
-    background-color: #ff4081;  /* Pink color */
-    color: white;  /* Text color */
-    border: none;  /* Remove default border */
-    padding: 15px 30px;  /* Padding for button size */
-    border-radius: 5px;  /* Slightly rounded corners */
-    font-size: 1.2em;  /* Increase font size */
-    text-transform: uppercase;  /* Make text uppercase */
-    cursor: pointer;  /* Show hand cursor on hover */
-    letter-spacing: 1px;  /* Space between letters */
-    transition: all 0.3s ease;  /* Smooth hover effect */
-}
-
-.generate-images-btn:hover {
-    background-color: #e91e63;  /* Darker pink on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow effect */
-    transform: translateY(-3px);  /* Lift button slightly on hover */
-}
-
+        .generate-images-btn {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .generate-images-btn:hover {
+            background-color: #e91e63;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+        /* Reduced height of the preview section */
         .preview-container {
             background-color: #2a2a2a;
             border-radius: 10px;
-            height: 400px;
+            height: 250px; /* Reduced from 400px */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -140,7 +140,7 @@
     <div class="container">
         <div class="hero">
             <h1>AI-generated Tattoos</h1>
-            <p>Discover AI-generated tattoo designs tailored to your style. Create custom tattoos from text or images and see them on various body parts in real-time.</p>
+            <p>Discover AI-generated tattoo designs tailored to your style.</p>
             <div>
                 <button class="btn" id="generate-btn">Generate from Text</button>
                 <label for="file-upload" class="btn">Upload Image</label>
@@ -160,8 +160,8 @@
                 <option value="chest">Chest</option>
                 <option value="ankle">Ankle</option>
             </select>
-<button id="generate-btn" class="btn generate-images-btn">Generate Images</button>
-</div>
+            <button id="generate-btn" class="btn generate-images-btn">Generate Images</button>
+        </div>
 
         <div class="preview-section">
             <div class="preview-container" id="tattoo-preview">
