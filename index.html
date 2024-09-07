@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4EWH4X7RM7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4EWH4X7RM7');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover AI-generated tattoo designs tailored to your style. Create custom tattoos from text or images and see them on various body parts in real-time.">
@@ -97,11 +88,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transform: translateY(-3px);
         }
-        /* Reduced height of the preview section */
+        /* Reduced height of the preview section on Y-Axis */
         .preview-container {
             background-color: #2a2a2a;
             border-radius: 10px;
-            height: 250px; /* Reduced from 400px */
+            height: 180px; /* Slimmed down the preview */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -186,6 +177,21 @@
         const tattooPreview = document.querySelector('#tattoo-preview img');
         const tattooGallery = document.getElementById('tattoo-gallery');
         const placementSelector = document.getElementById('placement-selector');
+
+        // Array of default images for rotation
+        const defaultImages = [
+            'https://via.placeholder.com/300x150?text=Tattoo+Design+1',
+            'https://via.placeholder.com/300x150?text=Tattoo+Design+2',
+            'https://via.placeholder.com/300x150?text=Tattoo+Design+3',
+            'https://via.placeholder.com/300x150?text=Tattoo+Design+4',
+        ];
+
+        // Show random default image when the website loads
+        window.onload = () => {
+            const randomIndex = Math.floor(Math.random() * defaultImages.length);
+            tattooPreview.src = defaultImages[randomIndex];
+            tattooPreview.alt = "Default Tattoo Preview";
+        };
 
         document.getElementById('generate-btn').addEventListener('click', () => {
             const prompt = tattooPrompt.value;
