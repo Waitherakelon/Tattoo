@@ -80,7 +80,7 @@
         }
         .preview-section {
             width: 55%;
-            aspect-ratio: 1 / 1; /* Make the preview box 1:1 ratio */
+            height: 400px; /* Resized preview box */
             position: relative;
             overflow: hidden;
             background-color: #3a3a3a;
@@ -228,29 +228,39 @@
 
         // Fetch from Pexels API
         function fetchFromPexels(prompt) {
-            const url = `https://api.pexels.com
-            function handleImages(imageUrls) {
-        generatedDesigns = imageUrls;
-        updatePreview();
-        updateGallery();
-    }
-
-    function updatePreview() {
-        if (generatedDesigns.length > 0) {
-            tattooPreview.src = generatedDesigns[0];
+            const url = `https://api.pexels.com/v1/search?query=${prompt}&per_page=5`;
+            fetch(url, {
+                headers: { Authorization: `Bearer ${PEXELS_API_KEY}` }
+            })
+                .then(response => response.json())
+                .then(data => handleImages(data.photos.map(photo => photo.src.medium)))
+                .catch(err => console.error('Pexels Error:', err));
         }
-    }
 
-    function updateGallery() {
-        tattooGallery.innerHTML = '';
-        generatedDesigns.forEach((url, index) => {
-            const galleryItem = document.createElement('div');
-            galleryItem.classList.add('gallery-item');
-            galleryItem.innerHTML = `
-                <img src="${url}" alt="Tattoo ${index + 1}">
-                <a href="${url}" download="tattoo-design-${index + 1}.jpg" class="download-btn">Download</a>
-            `;
-            tattooGallery.appendChild(galleryItem);
-        });
-    }
-</script>
+        function handleImages(imageUrls) {
+            generatedDesigns = imageUrls;
+            updatePreview();
+            updateGallery();
+        }
+
+        function updatePreview() {
+            if (generatedDesigns.length > 0) {
+                tattooPreview.src = generatedDesigns[0];
+            }
+        }
+
+        function updateGallery() {
+            tattooGallery.innerHTML = '';
+            generatedDesigns.forEach((url, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+                galleryItem.innerHTML = `
+                    <img src="${url}" alt="Tattoo ${index + 1}">
+                    <a href="${url}" download="tattoo-design-${index + 1}.jpg" class="download-btn">Download</a>
+                `;
+                tattooGallery.appendChild(galleryItem);
+            });
+        }
+    </script>
+</body>
+</html>
